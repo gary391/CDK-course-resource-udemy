@@ -1,0 +1,3 @@
+node modules
+cdk.out
+*.DS_Store
