@@ -1,5 +1,5 @@
 import * as cdk from 'aws-cdk-lib';
-import { Fn } from 'aws-cdk-lib';
+import { CfnOutput, Fn } from 'aws-cdk-lib';
 import { Bucket, CfnBucket } from 'aws-cdk-lib/aws-s3';
 import { Construct } from 'constructs';
 
@@ -14,9 +14,15 @@ export class PhotosStack extends cdk.Stack {
       // Initialize a method inside the constructor
       this.initializeSuffix();
 
-      new Bucket(this, 'PhotosBucket4', {
+      const photosBucket = new Bucket(this, 'PhotosBucket4', {
         bucketName: `photosbucket-${this.stackSuffix}`
       });
+
+      // We need to export the bucket from here using CfnOutput
+      new CfnOutput(this, 'photos-bucket', {
+        value:photosBucket.bucketArn,
+        exportName: 'photos-bucket'
+      })
       /*
 
       // Using this command you can avoid running into an issue where it says the
