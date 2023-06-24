@@ -7,6 +7,7 @@ export class PhotosStack extends cdk.Stack {
 
     // Instance variable
     private stackSuffix: string;
+    public readonly photosBucketArn: string;
 
     constructor(scope: Construct, id: string, props?: cdk.StackProps) {
       super(scope, id, props);
@@ -17,6 +18,8 @@ export class PhotosStack extends cdk.Stack {
       const photosBucket = new Bucket(this, 'PhotosBucket4', {
         bucketName: `photosbucket-${this.stackSuffix}`
       });
+
+      this.photosBucketArn = photosBucket.bucketArn;
 
       // We need to export the bucket from here using CfnOutput
       new CfnOutput(this, 'photos-bucket', {
