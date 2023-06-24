@@ -22,10 +22,10 @@ export class PhotosStack extends cdk.Stack {
       this.photosBucketArn = photosBucket.bucketArn;
 
       // We need to export the bucket from here using CfnOutput
-      new CfnOutput(this, 'photos-bucket', {
-        value:photosBucket.bucketArn,
-        exportName: 'photos-bucket'
-      })
+      // new CfnOutput(this, 'photos-bucket', {
+      //   value:photosBucket.bucketArn,
+      //   exportName: 'photos-bucket'
+      // })
       /*
 
       // Using this command you can avoid running into an issue where it says the
