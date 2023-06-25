@@ -1,0 +1,12 @@
+Initialize CDK Project from Sratch 
+- Create folder 
+- npm init -y 
+- install dependencies 
+- create launcher.ts file 
+- create empty stack 
+- create cdk.json file
+================================================================
+CDK aspects: Check or modify resources after they were created 
+- Visitor pattern 
+- simple usecase: add tags 
+- popular usecase: enforce security or best practice (like a code linter)

@@ -1,7 +1,0 @@
-Initialize CDK Project from Sratch 
-- Create folder 
-- npm init -y 
-- install dependencies 
-- create launcher.ts file 
-- create empty stack 
-- create cdk.json file
