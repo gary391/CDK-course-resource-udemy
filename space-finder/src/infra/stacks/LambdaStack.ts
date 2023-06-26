@@ -3,7 +3,11 @@ import { Construct } from "constructs";
 import { Code, Function as LambdaFunction, Runtime } from "aws-cdk-lib/aws-lambda";
 import { join } from 'path';
 import { LambdaIntegration } from 'aws-cdk-lib/aws-apigateway';
+import { ITable } from 'aws-cdk-lib/aws-dynamodb';
 
+interface LambdaStackProps extends StackProps {
+    spacesTable: ITable
+}
 
 export class LambdaStack extends Stack {
 
@@ -11,7 +15,7 @@ export class LambdaStack extends Stack {
     public readonly helloLamdbaIntegration: LambdaIntegration
 
     // Constructor
-    constructor(scope: Construct, id: string, props?: StackProps) {
+    constructor(scope: Construct, id: string, props: LambdaStackProps) {
         super(scope, id, props)
 
         const helloLambda = new LambdaFunction(this, 'HelloLambda', {
@@ -21,6 +25,9 @@ export class LambdaStack extends Stack {
             // last entry here is the name of the file, which in this case is hello
             // This information is already, mentioned in the handler.  
             code: Code.fromAsset(join(__dirname, '..', '..', 'services')),
+            environment: {
+                TABLE_NAME: props.spacesTable.tableName
+            }
         })
         // The helloLamdbaIntegration we defined here is an instance of LambdaIntegration that 
         // Takes the helloLambda value
