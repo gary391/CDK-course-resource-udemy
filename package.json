@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.119",
+    "esbuild": "^0.18.11"
+  },
+  "dependencies": {
+    "@types/uuid": "^9.0.2",
+    "uuid": "^9.0.0"
+  }
+}

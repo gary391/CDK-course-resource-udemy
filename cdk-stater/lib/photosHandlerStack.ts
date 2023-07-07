@@ -4,8 +4,9 @@ import { Bucket, CfnBucket } from 'aws-cdk-lib/aws-s3';
 import { Construct } from 'constructs';
 import {Code, Function as LambdaFunction, Runtime } from 'aws-cdk-lib/aws-lambda';
 
-interface PhotosHandlerStackProps extends cdk.StackProps {
+// Using interface we are creating required properties 
 
+interface PhotosHandlerStackProps extends cdk.StackProps {
     targetBucketArn: string
 }
 
@@ -28,10 +29,10 @@ export class PhotosHandlerStack extends cdk.Stack {
             console.log("hello! World Bucket: " + process.env.TARGET_BUCKET)
         };`),
 
-        // Here we are specifying that the target bucket is target bucket that we got from the 
-        // export. 
+        // Here we are specifying that the target bucket we got is from the
+        // export.
         environment:{
-            TARGET_BUCKET: props.targetBucketArn, 
+            TARGET_BUCKET: props.targetBucketArn, // Here we will take the properties from the props
         },
       });
      

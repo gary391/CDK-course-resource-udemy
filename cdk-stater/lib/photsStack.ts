@@ -19,6 +19,9 @@ export class PhotosStack extends cdk.Stack {
         bucketName: `photosbucket-${this.stackSuffix}`
       });
 
+      // We are assigning the arn of the bucket using photoBucketArn and assigning it 
+      // to the photosBucketArn instance variable.
+      
       this.photosBucketArn = photosBucket.bucketArn;
 
       // We need to export the bucket from here using CfnOutput
