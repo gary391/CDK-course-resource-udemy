@@ -57,6 +57,7 @@ export class LambdaStack extends Stack {
 
     // Public property named helloLambdaIntegration of type LambdaIntegration
     public readonly helloLamdbaIntegration: LambdaIntegration
+    public readonly spacesLamdbaIntegration: LambdaIntegration
 
     // Constructor
     constructor(scope: Construct, id: string, props: LambdaStackProps) {
@@ -83,8 +84,23 @@ export class LambdaStack extends Stack {
             ],
             resources:["*"] // bad practice!!
         }))
+
+        /**
+         * SpacesLambda
+         */
+        const spacesLambda = new NodejsFunction(this, 'spacesLambda', {
+            runtime: Runtime.NODEJS_18_X,
+            handler: 'spacehandler',
+            entry: (join(__dirname, '..', '..', 'services', 'spaces', 'spacehandler.ts')),
+            environment:{
+                TABLE_NAME: props.spacesTable.tableName
+            }
+        });
+
+
         // The helloLamdbaIntegration we defined here is an instance of LambdaIntegration that 
         // Takes the helloLambda value
         this.helloLamdbaIntegration = new LambdaIntegration(helloLambda)
+        this.spacesLamdbaIntegration = new LambdaIntegration(spacesLambda)
     }
 }

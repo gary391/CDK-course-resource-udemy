@@ -67,4 +67,11 @@ npm i -D @types/aws-lambda
  - read cloudwatch logs
 
 ---
+### AWS Lambda Architecture
 
+1. One approach will be to create multiple lambdas each corresponding to a specific method for each resource.
+2. Second approach will be group all our lambda togather per resources, which will handle all methods. 
+3. Monolithic Lambda - A single lambda for all the resources example: /spaces and /reservations able to handle all the methods - NOT RECOMMENDED
+4. A good approach will be
+   1. Apigateway handles routing 
+   2. Lambda handles HTTP method
