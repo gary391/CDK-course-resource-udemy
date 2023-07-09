@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "tsforbeginners",
+			"path": "../../../39_TypeScript/tsforbeginners"
+		},
+		{
+			"name": "space-finder",
+			"path": "space-finder"
+		},
+		{
+			"name": "cdk-stater",
+			"path": "cdk-stater"
+		}
+	],
+	"settings": {}
+}

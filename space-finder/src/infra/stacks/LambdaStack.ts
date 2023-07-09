@@ -96,7 +96,12 @@ export class LambdaStack extends Stack {
                 TABLE_NAME: props.spacesTable.tableName
             }
         });
-
+        // We need this policy so that lambda can access the dynamodb table
+        spacesLambda.addToRolePolicy(new PolicyStatement({
+            effect: Effect.ALLOW,
+            resources:[props.spacesTable.tableArn],
+            actions: ['dynamodb:PutItem']
+        }))
 
         // The helloLamdbaIntegration we defined here is an instance of LambdaIntegration that 
         // Takes the helloLambda value

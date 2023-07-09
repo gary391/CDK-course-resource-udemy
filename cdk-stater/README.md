@@ -75,3 +75,21 @@ npm i -D @types/aws-lambda
 4. A good approach will be
    1. Apigateway handles routing 
    2. Lambda handles HTTP method
+
+
+### Dynamodb Section
+
+1. Dynamodb db - NoSQL DB
+2. Ideal for Documents and key-value models
+3. Handle Simple Queries 
+4. Cheap, fast, scalable and limited indexing
+5. Handles simple Queries
+
+- Section deals with putting all queries inside a lamdba and api gateway.
+- Web Application can be handled via the internet 
+
+### Problems when querying ddb 
+- `cannot read properties of undefined`  - We get this if don't define the type correctly when defining the values in the ddb
+- Solutions:
+  - marshall & unmarshalling from @aws-cdk/util-dynamodb
+  - DynamoDBDocumentClient from @aws-sdk/lib-dynamodb

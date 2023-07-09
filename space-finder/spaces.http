@@ -3,4 +3,11 @@ GET https://w837psavk9.execute-api.us-east-1.amazonaws.com/prod/spaces
 GET https://w837psavk9.execute-api.us-east-1.amazonaws.com/prod/sdkspaces
 ###
 POST https://w837psavk9.execute-api.us-east-1.amazonaws.com/prod/sdkspaces
+Content-Type: application/json
+
+{
+    "location": "Delhi"
+}
+###
+GET https://w837psavk9.execute-api.us-east-1.amazonaws.com/prod/sdkspaces?id=343345
 ###
