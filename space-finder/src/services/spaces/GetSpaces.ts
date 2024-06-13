@@ -47,6 +47,7 @@ export async function getSpaces(event: APIGatewayProxyEvent, ddbClient: DynamoDB
     }
 
     }
+    // Scan operation to get all the data 
    const result  = await ddbClient.send(new ScanCommand({
         TableName: process.env.TABLE_NAME
    })); 

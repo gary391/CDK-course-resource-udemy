@@ -18,7 +18,7 @@
             ],
             "env": {
                 "AWS_REGION": "us-east-1",
-                "TABLE_NAME": "SpaceTable-0a3589ce41df"
+                "TABLE_NAME": "SpaceTable-0a20d40f9c6d"
             }
         }
     ]

@@ -1,6 +1,6 @@
 
 import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from "aws-lambda";
-import { v4 } from 'uuid';
+// import { v4 } from 'uuid';
 import { S3Client, ListBucketsCommand} from '@aws-sdk/client-s3';
 // This is the code for the lambda. 
 // Main async function that receives two arguments event, context. 

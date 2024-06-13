@@ -2,10 +2,11 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from "aws-lambda";
 import { postSpaces } from "./PostSpaces";
-import { escape } from "querystring";
 import { getSpaces } from "./GetSpaces";
 import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 import { postSpacesWithDoc } from "./PostSpacesWithDoc";
+import { updateSpaces } from "./UpdateSpaces";
+import { deleteSpaces } from "./DeleteSpcaces";
 
 // Best Practice initialize the dynamodb Client outside the function 
 // in basic understanding we can create a connection and then keep using the same connection
@@ -27,10 +28,19 @@ async function spacehandler(event: APIGatewayProxyEvent, context: Context): Prom
                 const getResponse = await getSpaces(event, ddbClient);
                 return getResponse
             case 'POST':
-                // const response = await postSpaces (event, ddbClient);
-                const response = await postSpacesWithDoc (event, ddbDocClient);
-                return response
-        
+                const postResponse = await postSpaces (event, ddbClient);
+                // const response = await postSpacesWithDoc (event, ddbDocClient); // Using ddbDocCLient only!!
+                return postResponse
+            case 'PUT':
+                const putResponse = await updateSpaces (event, ddbClient);
+                // const response = await postSpacesWithDoc (event, ddbDocClient); // Using ddbDocCLient only!!
+                console.log(putResponse)
+                return putResponse
+            case 'DELETE':
+                const deleteResponse = await deleteSpaces (event, ddbClient);
+                // const response = await postSpacesWithDoc (event, ddbDocClient); // Using ddbDocCLient only!!
+                console.log(deleteResponse)
+                return deleteResponse
             default:
                 break;
         }

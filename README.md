@@ -93,3 +93,38 @@ npm i -D @types/aws-lambda
 - Solutions:
   - marshall & unmarshalling from @aws-cdk/util-dynamodb
   - DynamoDBDocumentClient from @aws-sdk/lib-dynamodb
+  
+### General concepts:
+
+cdk code ---[synth]---> CF template ----[deploy]---->AWS CF
+where synth and deploy are two commands
+
+1. bin folder will have the initializtion code.
+2. lib folder will have the actual cloudformation template i.e. the code that will translate to cloudformation.
+3. package.json will have the dependencies that cdk will install.
+   1. The dependencies will be of two types i.e Dev dependencies and dependencies.
+      1. using the ts-node dependencies we don't have to build and could directly run the typescript code.
+      2. What makes this project a cdk project is the dependencies i.e the aws-cdk dependencies, and the two construct lib i.e. constructs, and aws-cdk-lib.
+      3. Additionally it also has a cdk.json file which configures the cdk inside this project.
+         1. app command "npx ts-node --prefer-ts-exts bin/cdk-starter-new.ts" will be called when we call different cdk commands. 
+            1. npx is node execute, which will execute the ts-node library which allows direct execution of the typescript. 
+               1. then we have a path to our bin folder with cdk starter file, this is the entry point into our project. This is what is being called when we execute different cdk commands. Inside this project.
+
+### AWS Constructs
+
+#### Low level constructs
+ - cfn (cloud formation) resources. When used, we must configure all properties.
+ - No pre configured options, requires all options to be build from scratch. ()
+
+#### AWS resources with a higher-level 
+- CDK provides additional functionality like defaults, boiler plate and type safety for many parameters.
+- One level of abstractions above the low level.
+  
+#### Patterns:
+- Combine multiple types of resources and help with common tasks in AWS. 
+- Example LambdaRestAPI - Which is combination of lambda and api gateway combined together.
+
+#### When to use which CDK construct?
+- L1 - Most AWS resources are migrated to L2. Use of new services that are still not migrated.
+- L2 - Most of the time
+- L3 - Matter of preference of company policy. What degree of abstraction do I want?
