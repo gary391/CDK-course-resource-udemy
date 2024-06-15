@@ -128,3 +128,22 @@ where synth and deploy are two commands
 - L1 - Most AWS resources are migrated to L2. Use of new services that are still not migrated.
 - L2 - Most of the time
 - L3 - Matter of preference of company policy. What degree of abstraction do I want?
+
+#### What is the difference between cloudformation vs CDK?
+
+- In cloudformation 
+  - all the resources are organized into stacks, and these stack are formed use L1 resources/constructs. 
+- In CDK 
+  -  CDK has a layer application just as an internal tool i.e. CDK app, it requries this application, 
+  -  but let's talk about these constructs for AWS. 
+  - Where as the stack formed from the CDK app can contain a combination of L1, L2 and L3 constructs. 
+    - But in the end the CDK generates i.e. cdk sync L1 constructs.
+  
+#### CDK Commands:
+
+cdk init app --language typescript - We need to provide the app for which we need to initialize the project.
+cdk bootstrap -  This is create a starter environment for all our applications.
+cdk synth - Only generates a cloudformation template for each stack.
+cdk deploy - Used to deploy the stack. If we have only one stack we can just call the cdk deploy.
+cdk list - list the number of stacks - This is done locally.
+cdk diff - Gives the delta between what we have locally and what is there remotely.

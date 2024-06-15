@@ -9,3 +9,4 @@ const app = new cdk.App();
 // This is the initialization of the stack.
 // Stack defined in the lib folder.
 new CdkStarterNewStack(app, 'CdkStarterNewStack');
+
