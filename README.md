@@ -147,3 +147,32 @@ cdk synth - Only generates a cloudformation template for each stack.
 cdk deploy - Used to deploy the stack. If we have only one stack we can just call the cdk deploy.
 cdk list - list the number of stacks - This is done locally.
 cdk diff - Gives the delta between what we have locally and what is there remotely.
+
+#### What happens when you change the logical ID or construct ID of a resource?
+-  Cloudformation will create a new-resource
+-  Delete the old one 
+-  
+
+#### What is an intrinsic function ?
+- Short definition: build-in function to help manager our stacks.
+
+```
+CDK code --[synth]--> cf template ---[deploy]---> AWS CF
+```
+At the Deployment step: 
+ - stack is created. Available information:
+  - stack name, stack id
+  - deployment parameters, external parameters
+- Resource1 is created. Ex: s3 bucket. Available info: bucket name, id
+- Resource2 is created. Ex: s3 bucket. Available info: bucket name, id
+...
+...
+
+ Deployment finished. 
+
+The point is that CDK and cloudformation let us do this in the order we choose, if we choose one 
+resource list to be created before another resource. This is important because maybe one resource 
+needs information from another resouce. And here is where cloudformation instrinsic function come 
+into place.
+
+exmaple: Ref function, conditional function example: Fn:If
