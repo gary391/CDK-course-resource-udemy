@@ -25,6 +25,7 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 * Visitor pattern 
 * simple usecase: add tags 
 * popular usecase: enforce security or best practice (like a code linter)%
+* Use case will be tagging for existing resources.
 
 ## Dependency Management: [Problem]
 * Runnable application code is made up of two set of code i.e APP Code and Dependencies code:
@@ -176,3 +177,30 @@ needs information from another resouce. And here is where cloudformation instrin
 into place.
 
 exmaple: Ref function, conditional function example: Fn:If
+#### Handling multiple stacks 
+
+#### Why would we ever need multiple stacks and not put all our resources into one stack?
+
+- Some stacks may contain sensetivie info (IAM roles, secrets)
+- Some stacks may take a lot of time for deployment or deletion 
+  - Allows us to deploy incremental changes corresponding to individual stacks.
+- Resources get big and the need organizaton.
+
+#### How to organize stacks?
+
+- There are no documented rules, not even best practices
+  - Separate stacks for resources with state(databases, buckets)
+  - Separate stacks for IAM roles, polices, secrets 
+  - Separate stacks for resources with complex initialization (VPCs, DNS)
+  
+#### Challenge: Cross stack references
+
+- CDK consider alphabetical order for deployment.
+- If there is dependency between the stack, if the stacks are not deployed in sequence,
+- the deployment will fail.
+
+#### How to delete a stack that has reference from other stack non production environment?
+
+- Delete the stack that don't have any references first 
+- Once that is done, than delete the remaining stacks
+- Using this approach you will not run into "rollback state"
