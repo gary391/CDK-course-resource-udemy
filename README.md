@@ -17,9 +17,17 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 * Create folder 
 * npm init -y 
 * install dependencies 
-* create launcher.ts file 
+* create launcher.ts file - This is like the bin folder for the app
 * create empty stack 
 * create cdk.json file
+  
+```
+cd space-finder-new
+npm init -y 
+npm i -D aws-cdk aws-cdk lib constructs
+npm i -D typescript ts-node
+npm i -D @types/node
+```
 
 ## CDK aspects: Check or modify resources after they were created 
 * Visitor pattern 
