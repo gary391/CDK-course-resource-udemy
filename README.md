@@ -24,7 +24,7 @@ This is a blank project for CDK development with TypeScript.
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
  * "app": "npx ts-node --prefer-ts-exts bin/cdk-starter-new.ts" - This node execute.
  * This is the entry point into our project. This is what is called when we call different cdk command 
- * inside our project.
+ * inside our project, and makes it a CDK project.
 
 ## Useful commands
 
@@ -142,16 +142,17 @@ where synth and deploy are two commands
                1. then we have a path to our bin folder with cdk starter file, this is the entry point into our project. This is what is being called when we execute different cdk commands. Inside this project.
 
 ### AWS Constructs
+-  They are the basic building blocks for a CDK application.
 
-#### Low level constructs
+#### Low level constructs - L1
  - cfn (cloud formation) resources. When used, we must configure all properties.
  - No pre configured options, requires all options to be build from scratch. ()
 
-#### AWS resources with a higher-level 
+#### AWS resources with a higher-level - L2
 - CDK provides additional functionality like defaults, boiler plate and type safety for many parameters.
 - One level of abstractions above the low level.
   
-#### Patterns:
+#### Patterns - L3
 - Combine multiple types of resources and help with common tasks in AWS. 
 - Example LambdaRestAPI - Which is combination of lambda and api gateway combined together.
 
@@ -162,9 +163,10 @@ where synth and deploy are two commands
 
 #### What is the difference between cloudformation vs CDK?
 
-- In cloudformation 
-  - all the resources are organized into stacks, and these stack are formed use L1 resources/constructs. 
-- In CDK 
+- In cloudformation:
+  - All the resources are organized into stacks, and these stack are formed use L1 resources/constructs.
+   
+- In CDK:
   -  CDK has a layer application just as an internal tool i.e. CDK app, it requries this application, 
   -  but let's talk about these constructs for AWS. 
   - Where as the stack formed from the CDK app can contain a combination of L1, L2 and L3 constructs. 
@@ -178,6 +180,11 @@ cdk synth - Only generates a cloudformation template for each stack.
 cdk deploy - Used to deploy the stack. If we have only one stack we can just call the cdk deploy.
 cdk list - list the number of stacks - This is done locally.
 cdk diff - Gives the delta between what we have locally and what is there remotely.
+
+- By default the CDK resources that are created, example s3 bucket has a default removal policy.
+- Due to which the s3 bucket will be orpaned when the stack is deleted.
+- Additionally the assets bucket has the IAM polices etc., if that is deleted, you will not be able to 
+- delete the stack.
 
 #### What happens when you change the logical ID or construct ID of a resource?
 -  Cloudformation will create a new-resource
