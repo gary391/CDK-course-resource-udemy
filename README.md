@@ -1,8 +1,30 @@
+# How to create a simple app using CDK 
+
+* `cd cdk-starter`
+* cdk init
+* cdk init --language=typescript (For simple project)
+
+# Folder structures inside the project 
+
+* lib folder - This folder will contains the actual cloudformation
+* bin folder - Contains the code to initialize the application stacks
+* The dependencies are stored in package.json file. 
+  * There are primary two types of dependencies 
+    * devdependencies
+    * dependencies
+      * aws-cdk-lib - Construct lib
+      * constructs 
+      * These will generate types.
+
+
 # Welcome to your CDK TypeScript project
 
 This is a blank project for CDK development with TypeScript.
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
+ * "app": "npx ts-node --prefer-ts-exts bin/cdk-starter-new.ts" - This node execute.
+ * This is the entry point into our project. This is what is called when we call different cdk command 
+ * inside our project.
 
 ## Useful commands
 
