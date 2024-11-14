@@ -189,7 +189,18 @@ cdk diff - Gives the delta between what we have locally and what is there remote
 #### What happens when you change the logical ID or construct ID of a resource?
 -  Cloudformation will create a new-resource
 -  Delete the old one 
--  
+
+#### What are different type of IDs 
+-  Construct ID, Logical ID, Physical ID when a stack is created 
+   -  Logical ID is requried by cloudformaton to use this ID inside Cloudformation.
+   -  The physical ID is required by AWS. "ARN" - This is how a resource is referenced outside the stack.
+
+#### What happens when construct ID of resource is changed?
+- The corresponding logical ID will also change of that resource.
+  - If the logical ID of a resource changes, AWS will create and replace it.
+  - This means 
+    - AWS will create a new resources
+    - AWS will delete the old once.
 
 #### What is an intrinsic function ?
 - Short definition: build-in function to help manager our stacks.
